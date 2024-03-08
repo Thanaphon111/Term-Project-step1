@@ -4,7 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 // Import saveuser function
-const saveUserData = require("../controllers/users");
+const saveUserData = require("../controllers/saveuser");
 
 router.post("/", (req, res) => {
   const userData = req.body;
