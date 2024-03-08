@@ -1,20 +1,19 @@
-const { Router } = require("express");
-const router = Router();
+// saveuser.js
 
-const { users, saveuser } = require('../controllers/users');
+const express = require("express");
+const router = express.Router();
 
-/*
-router.post('/login',[
-    check('email', 'Email is required').isEmail(),
-    check('password', 'Password is required').not().isEmpty(),
-    validateInput
-],login );
-*/
+// Import saveuser function
+const saveUserData = require("../controllers/users");
 
-router.get("/allusers", users);
-
-//router.get("/saveuser", saveuser);
-
-router.post('/saveuser',saveuser);
+router.post("/", (req, res) => {
+  const userData = req.body;
+  if (!userData) {
+    return res.status(400).send('Invalid user data');
+  }
+  console.log(userData);
+  saveUserData(userData);
+  res.status(200).send('User data received and being saved.');
+});
 
 module.exports = router;
